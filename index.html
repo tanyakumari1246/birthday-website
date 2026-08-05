@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Something Special For You ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- =========================
+         LOGIN / USERNAME PAGE
+    ========================== -->
+
+    <section id="loginPage" class="login-page">
+
+        <div class="stars"></div>
+
+        <div class="login-card">
+
+            <div class="heart-icon">❤️</div>
+
+            <h1>Hey You...</h1>
+
+            <p>
+                Someone has prepared something<br>
+                very special for you.
+            </p>
+
+            <div class="input-box">
+                <input
+                    type="text"
+                    id="usernameInput"
+                    placeholder="Enter your name..."
+                    autocomplete="off"
+                >
+
+                <button type="button" onclick="startSurprise()">
+                    Open My Surprise ✨
+                </button>
+            </div>
+
+            <p id="inputHint" class="input-hint">Please enter your name in CAPITAL LETTERS only.</p>
+
+            <p id="errorMessage" class="error-message"></p>
+
+            <div id="loginCountdown" class="countdown-timer hidden">
+                Your surprise opens on 6th August at 12:00 AM.
+            </div>
+
+            <!-- Calendar for selecting birth date -->
+            <div id="calendarContainer" class="calendar-container hidden">
+
+                <p class="calendar-instruction">Tap your birth date in August 2026</p>
+
+                <div id="calendarGrid" class="calendar-grid"></div>
+
+                <p id="calendarError" class="error-message"></p>
+
+            </div>
+
+            <div class="small-text">
+                Made with ❤️ just for you
+            </div>
+ 
+
+            <!-- album link removed (album is now inside the surprise page) -->
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         COUNTDOWN PAGE
+         (Shown after correct date selection)
+    ========================== -->
+
+    <section id="countdownPage" class="countdown-page hidden">
+
+        <div class="countdown-card">
+
+            <h1>Almost There...</h1>
+
+            <div class="countdown-intro">Surprise will open in</div>
+
+            <div id="pageCountdown" class="page-countdown">Surprise opens soon</div>
+
+                <p class="small-text">Stay tuned — your surprise will open when the countdown ends.</p>
+
+                <button id="skipButton" class="skip-button" onclick="skipCountdown()">Skip to Surprise</button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MAIN BIRTHDAY PAGE
+    ========================== -->
+
+    <section id="birthdayPage" class="birthday-page">
+
+        <!-- Canvas for fireworks -->
+        <canvas id="fireworksCanvas"></canvas>
+
+        <!-- Floating hearts -->
+        <div class="floating-hearts"></div>
+
+        <!-- Confetti -->
+        <div id="confettiContainer"></div>
+
+
+        <!-- MUSIC BUTTON -->
+
+        <button class="music-button" onclick="toggleMusic()" title="Tujh Mein Rab Dikhta Hai — Rab Ne Bana Di Jodi">
+            🎵
+        </button>
+
+        <audio id="birthdayMusic" loop aria-label="background-music">
+            <!-- Using the available MP3 in the project -->
+            <source src="music/f104-d72e-41de-85f4-349dc23873f4 (mp3cut.net).mp3" type="audio/mpeg">
+        </audio>
+
+
+        <!-- =========================
+             HERO SECTION
+        ========================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="small-heading">
+                    ✨ A Special Day ✨
+                </div>
+
+                <h1>
+                    Happy Birthday
+                </h1>
+
+                <h2 id="birthdayName">
+                    Beautiful
+                </h2>
+
+                <div id="birthdayCountdown" class="page-countdown hidden"></div>
+
+                <p class="hero-message">
+                    Today isn't just another day...
+                    <br>
+                    Today is the day someone incredibly special
+                    came into this world. ❤️
+                </p>
+
+                <button class="scroll-button" onclick="scrollToMemories()">
+                    See Your Surprise ↓
+                </button>
+
+                <!-- photo album removed -->
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             BIRTHDAY CAKE
+        ========================== -->
+
+        <section class="cake-section">
+
+            <div class="section-title">
+                <span>🎂</span>
+                <h2>Make A Wish</h2>
+                <span>🎂</span>
+            </div>
+
+            <div class="cake">
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+                <div class="cake-top"></div>
+                <div class="cake-middle"></div>
+                <div class="cake-bottom"></div>
+
+            </div>
+
+            <p class="wish-text">
+                Close your eyes, make a wish... ✨
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             PERSONAL MESSAGE
+        ========================== -->
+
+        <section class="message-section">
+
+            <div class="message-card">
+
+                <div class="quote">
+                    ❝
+                </div>
+
+                <h2>For You, <span id="messageName"></span> ❤️</h2>
+
+                <p>
+                    There are some people who make ordinary moments
+                    feel extraordinary just by being there.
+                </p>
+
+                <p>
+                    You are one of those people.
+                </p>
+
+                <p>
+                    May your life always be filled with happiness,
+                    laughter, beautiful memories and people who truly
+                    appreciate the wonderful person you are.
+                </p>
+
+                <p>
+                    Keep smiling. Keep shining.
+                    And never forget how special you are. ✨
+                </p>
+
+                <div class="signature">
+                    With lots of love ❤️
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             PHOTO ALBUM
+        ========================== -->
+
+        <!-- MESSAGE CARD ABOVE ALBUM -->
+        <div class="message-card album-message">
+
+            <div class="photo-message">
+                <p class="album-title">Happy Birthday, Someone Special ❤️</p>
+
+                <p>Some people leave our lives,<br>
+                but they never really leave our hearts.</p>
+
+                <p>Today, I don't want to talk about the distance between us,<br>
+                or about how things changed.<br>
+                I just want to remember the beautiful moments,<br>
+                the laughter, the memories, and all the little things<br>
+                that once made life feel so special.</p>
+
+                <p>You were a beautiful chapter of my life,<br>
+                and no matter where life takes us from here,<br>
+                I'll always be grateful that our paths crossed.</p>
+
+                <p>On your birthday, I sincerely hope life gives you<br>
+                everything your heart deserves—<br>
+                peace in your soul, a smile that never fades,<br>
+                people who truly value you,<br>
+                and countless reasons to be happy.</p>
+
+                <p>Maybe I can't be a part of your today anymore,<br>
+                but somewhere in my heart,<br>
+                I'll always wish the best for you.</p>
+
+                <p><strong>Happy Birthday. 🎂✨</strong></p>
+
+                <p>May this new chapter of your life<br>
+                be more beautiful than anything you've ever imagined.</p>
+
+                <p>And if you ever look back at the past someday,<br>
+                I hope you remember it with a smile—<br>
+                because I will too. ❤️</p>
+
+                <p>"तुम्हारा जन्मदिन है,<br>
+                    सोचा तुम्हें क्या दूँ—<br>
+              मेरे पास अब तुम्हारा साथ तो है नहीं,<br>
+                    बस एक दुआ है...<br>
+                  तुम जहाँ भी रहो,<br>
+                     तुम्हें कभी मेरी तरह<br>
+              किसी की कमी महसूस न हो।"</p>
+
+            </div>
+
+        </div>
+
+        <section id="memories" class="album-section">
+
+            <div class="section-heading">
+
+                <span>📸</span>
+
+                <h2>
+                    Our Beautiful Memories
+                </h2>
+
+                <p>
+                    A little collection of moments that deserve
+                    to be remembered forever.
+                </p>
+
+            </div>
+
+
+            <div class="photo-grid">
+
+                <!-- PHOTO 1 -->
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/IMG-20250913-WA0065.jpg"
+                        alt="Beautiful Memory"
+                    >
+
+                    <div class="photo-caption">
+                        That beautiful smile ❤️
+                    </div>
+
+                </div>
+
+
+                <!-- PHOTO 2 -->
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/IMG-20250510-WA0018.jpg"
+                        alt="Beautiful Photo"
+                    >
+
+                    <div class="photo-caption">
+                        One of my favorite Photos ✨
+                    </div>
+
+                </div>
+
+
+                <!-- PHOTO 3 -->
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/IMG-20240805-WA0006.JPEG"
+                        alt="Beautiful Photo"
+                    >
+
+                    <div class="photo-caption">
+                        A moment worth remembering 💕
+                    </div>
+
+                </div>
+
+
+                <!-- PHOTO 4 -->
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/IMG-20240805-WA0003.JPEG"
+                        alt="Beautiful Photo"
+                    >
+
+                    <div class="photo-caption">
+                        Simply beautiful 🌸
+                    </div>
+
+                </div>
+
+
+                <!-- PHOTO 5 -->
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/IMG-20250508-WA0009.jpg"
+                        alt="Beautiful Photo"
+                    >
+
+                    <div class="photo-caption">
+                        Forever a special memory ❤️
+                    </div>
+
+                </div>
+
+
+                <!-- ADD MORE PHOTOS HERE -->
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/Snapchat-1008999797.jpg"
+                        alt="Beautiful Photo"
+                    >
+
+                    <div class="photo-caption">
+                        Cuteeeee❤️✨
+                    </div>
+
+                </div>
+
+                <!-- NEW PHOTO 7 -->
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/IMG-20260516-WA0082.jpg"
+                        alt="New Memory"
+                    >
+
+                    <div class="photo-caption">
+                        Bride Material ✨
+                    </div>
+
+                </div>
+
+
+                <!-- NEW PHOTO 8 -->
+
+                <div class="photo-card">
+
+                    <img
+                        src="photos/IMG-20241211-WA0025.JPEG"
+                        alt="New Memory"
+                    >
+
+                    <div class="photo-caption">
+                        ❤️
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    <!-- photo album removed -->
+
+
+        <!-- =========================
+             FINAL SURPRISE
+        ========================== -->
+
+        <section class="final-section">
+
+            <div class="final-content">
+
+                <div class="big-heart">
+                    ❤️
+                </div>
+
+                <h2>
+                    Once Again...
+                </h2>
+
+                <h1 id="finalName">
+                    Happy Birthday!
+                </h1>
+
+                <p>
+                    May this new chapter of your life be
+                    more beautiful than all the chapters before it.
+                </p>
+
+                <div class="final-line">
+                    ✨ Stay happy. Stay beautiful. Stay you. ✨
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+
+            Made with ❤️ for
+            <span id="footerName"></span>
+            by someone who truly cares about you.(JACK)
+
+        </footer>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
