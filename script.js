@@ -217,12 +217,12 @@ function proceedAfterDateSelection(isCorrect) {
     if (pageCountdown) pageCountdown.classList.remove("hidden");
     if (loginCountdown) loginCountdown.classList.remove("hidden");
 
-    //const target = getSurpriseTarget();
+    const target = getSurpriseTarget();
 
-    //if (!target) {
+    if (!target) {
         revealBirthdayPage();
         return;
-    //}
+    }
 
     if (button) {
         button.disabled = true;
